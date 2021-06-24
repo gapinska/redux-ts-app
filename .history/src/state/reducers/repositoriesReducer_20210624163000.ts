@@ -24,14 +24,12 @@ interface SearchRepositoriesError {
   payload: string
 }
 
-type Action =
-  | SearchRepositories
-  | SearchRepositoriesSuccess
-  | SearchRepositoriesError
-
 const reducer = (
   state: RepositoriesState,
-  action: Action
+  action:
+    | SearchRepositories
+    | SearchRepositoriesSuccess
+    | SearchRepositoriesError
 ): RepositoriesState => {
   switch (action.type) {
     case ActionType.SEARCH_REPOSITORIES:

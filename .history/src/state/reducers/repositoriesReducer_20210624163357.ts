@@ -27,7 +27,7 @@ interface SearchRepositoriesError {
 type Action =
   | SearchRepositories
   | SearchRepositoriesSuccess
-  | SearchRepositoriesError
+  | SearchRepositoriesSuccess
 
 const reducer = (
   state: RepositoriesState,
