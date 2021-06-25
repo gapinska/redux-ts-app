@@ -1,21 +1,34 @@
-import axios from 'axios'
-import { ActionType } from '../action-types'
-import { Action } from '../actions'
+import axios from "axios"
+import { Dispatch } from "redux"
+import { ActionType } from "../action-types"
+import { Action } from "../actions"
 
-const searchRpositories = (term: string) => {
-    return async (dispatch: any) => {
-        dispatch({
-            type: ActionType.SEARCH_REPOSITORIES
-        })
+export const searchRpositories = (term: string) => {
+  return async (dispatch: Dispatch<Action>) => {
+    dispatch({
+      type: ActionType.SEARCH_REPOSITORIES,
+    })
 
-        try {
-            const { data } = await axios.get('https://registry.npmjs.org')
+    try {
+      const { data } = await axios.get("https://registry.npmjs.org", {
+        params: {
+          text: term,
+        },
+      })
 
-        } catch (err) {
-            dispatch({
-                type: ActionType.SEARCH_REPOSITORIES_ERROR,
-                payload: err.message
-            })
-        }
+      const names = data.objects.map((result: any) => {
+        return result.package.name
+      })
+
+      dispatch({
+        type: ActionType.SEARCH_REPOSITORIES_SUCCESS,
+        payload: names,
+      })
+    } catch (err) {
+      dispatch({
+        type: ActionType.SEARCH_REPOSITORIES_ERROR,
+        payload: err.message,
+      })
     }
+  }
 }
