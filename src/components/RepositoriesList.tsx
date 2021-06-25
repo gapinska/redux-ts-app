@@ -1,5 +1,3 @@
-import React from "react"
-
 const RepositoriesList: React.FC = () => {
   return (
     <div>
@@ -8,7 +6,7 @@ const RepositoriesList: React.FC = () => {
         <button>Search</button>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default RepositoriesList
+export default RepositoriesList;

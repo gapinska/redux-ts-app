@@ -1,17 +1,16 @@
-import React from "react"
-import "./App.css"
-import { Provider } from "react-redux"
-import { store } from "./store"
+import { Provider } from 'react-redux';
+import { store } from '../state';
+import RepositoriesList from './RepositoriesList';
 
-function App() {
+const App = () => {
   return (
     <Provider store={store}>
       <div>
-        <h1>Search for Package</h1>
+        <h1>Search For a Package</h1>
         <RepositoriesList />
       </div>
     </Provider>
-  )
-}
+  );
+};
 
-export default App
+export default App;
